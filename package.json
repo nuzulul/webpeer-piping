@@ -1,0 +1,29 @@
+{
+  "name": "webpeer-piping",
+  "version": "0.0.1",
+  "description": "webpeer network peer discovery over piping",
+  "main": "webpeer-piping.js",
+  "scripts": {
+	  "start":"npm run dev",
+	"dev":"vite serve test",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuzulul/webpeer-piping.git"
+  },
+  "keywords": [
+    "webpeer",
+    "webpeer-network"
+  ],
+  "author": "Nuzulul Zulkarnain",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nuzulul/webpeer-piping/issues"
+  },
+  "homepage": "https://github.com/nuzulul/webpeer-piping#readme",
+  "devDependencies": {
+    "vite": "^5.3.4",
+    "webpeerjs": "^0.1.9"
+  }
+}
