@@ -27,7 +27,7 @@ export async function webpeerPiping(node){
 		}
 	}
 
-	async function fresult(response){
+	async function fresult(response,index,number){
 		const result = await response.text();
 		const data = await aesGcmDecrypt(result,key)
 		const json = JSON.parse(data)
