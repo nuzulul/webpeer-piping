@@ -32,6 +32,12 @@ export async function webpeerPiping(node){
 		const data = await aesGcmDecrypt(result,key)
 		const json = JSON.parse(data)
 		const id = json.address[0].split('/').pop()
+		
+		if(id == node.id){
+			fresultcontinue(index,number)
+			return
+		}
+		
 		//console.log('peer found',id)
 		
 		for(const addr of json.address){
@@ -55,9 +61,13 @@ export async function webpeerPiping(node){
 	}
 	
 	async function fget(index,number){
-		if(!servers[index])return
+		if(!servers[index]){
+			fresultcontinue(index,number)
+			return
+		}
 		const url = servers[index]+path+number
 		if(url == fposturl){
+			//console.log('self',url)
 			fresultcontinue(index,number)
 			return
 		}
@@ -69,7 +79,7 @@ export async function webpeerPiping(node){
 				fresultcontinue(index,number)
 				return
 			}else{
-				fresult(response)
+				fresult(response,index,number)
 				return
 			}
 			
@@ -102,9 +112,12 @@ export async function webpeerPiping(node){
 			index--
 			if(debug)console.debug(error)
 		}
+	
+		fpostcontinue(index,number)
 		
+	}
 
-		
+	async function fpostcontinue(index,number){
 		const newindex = index+1
 		if(servers[newindex]){
 			fpost(newindex,number)
@@ -120,7 +133,10 @@ export async function webpeerPiping(node){
 	}
 	
 	async function fpost(index,number){
-		if(!servers[index])return
+		if(!servers[index]){
+			fpostcontinue(index,number)
+			return
+		}
 		const address = node.address
 		
 		const url = servers[index]+path+number
